@@ -29,10 +29,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
     Route::put('/events/{event}', [EventController::class, 'update'])->name('events.update');
     Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
-    Route::get('/events/upcoming', [EventController::class, 'upcoming'])->name('events.upcoming');
-    Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
+    // Route::get('/events/upcoming', [EventController::class, 'upcoming'])->name('events.upcoming');
+    // Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
 
-    // Route::get('/upcoming-events', [EventController::class, 'index'])->name('upcoming.events');
+    Route::get('/upcoming-events', [EventController::class, 'upcoming'])->name('upcoming.events');
 
 
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');  // Show profile details

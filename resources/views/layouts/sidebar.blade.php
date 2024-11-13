@@ -29,13 +29,6 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <!-- Upcoming Events Submenu -->
-                        <li class="nav-item">
-                            <a href="{{ route('events.upcoming') }}" class="nav-link">
-                                <i class="nav-icon fas fa-calendar-check"></i>
-                                <p>Upcoming Events</p>
-                            </a>
-                        </li>
                         <!-- Create Event Submenu -->
                         <li class="nav-item">
                             <a href="{{ route('events.create') }}" class="nav-link">
@@ -43,13 +36,20 @@
                                 <p>Create Event</p>
                             </a>
                         </li>
-                        <!-- View Events Submenu -->
+                        <!-- Upcoming Events Submenu -->
                         <li class="nav-item">
+                            <a href="{{ route('upcoming.events') }}" class="nav-link">
+                                <i class="nav-icon fas fa-calendar-check"></i>
+                                <p>Upcoming Events</p>
+                            </a>
+                        </li>
+                        <!-- View Events Submenu -->
+                        {{-- <li class="nav-item">
                             <a href="{{ route('events.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-eye"></i>
                                 <p>View Events</p>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
 
@@ -71,11 +71,11 @@
                             </a>
                         </li>
                         <!-- View Registrations Submenu -->
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{ route('registrations.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-eye"></i>
                                 <p>View Registrations</p>
-                            </a>
+                            </a> --}}
                         </li>
                     </ul>
                 </li>

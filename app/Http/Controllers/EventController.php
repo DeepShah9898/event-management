@@ -11,14 +11,9 @@ class EventController extends Controller
 {
     public function index()
     {
-        // Fetch upcoming events (make sure your model is paginated)
-        $upcomingEvents = Event::where('event_date', '>', now())
-                                ->orderBy('event_date', 'asc') // Sort events by date
-                                ->paginate(10);  // Paginate with 10 events per page
-    
-        return view('events.upcoming', compact('upcomingEvents'));
+        $events = Event::all();
+        return view('events.index', compact('events'));
     }
-    
     
 
     public function create()
@@ -53,8 +48,9 @@ class EventController extends Controller
 
     public function upcoming()
     {
-        dd("asd");
-        $upcomingEvents = Event::where('date', '>', now())->get();
+        $upcomingEvents = Event::where('date', '>', now())  // Use the 'date' field from your migration
+                            ->orderBy('date', 'asc')  // Sort events by the 'date' field
+                            ->paginate(10);  // Paginate with 10 events per page
 
         return view('events.upcoming', compact('upcomingEvents'));
     }
