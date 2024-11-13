@@ -11,9 +11,14 @@ class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::all();
-        return view('events.index', compact('events'));
+        // Fetch upcoming events (make sure your model is paginated)
+        $upcomingEvents = Event::where('event_date', '>', now())
+                                ->orderBy('event_date', 'asc') // Sort events by date
+                                ->paginate(10);  // Paginate with 10 events per page
+    
+        return view('events.upcoming', compact('upcomingEvents'));
     }
+    
     
 
     public function create()
