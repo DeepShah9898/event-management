@@ -7,6 +7,8 @@ use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\SponsorController;
+
 
 
 
@@ -29,6 +31,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
     Route::put('/events/{event}', [EventController::class, 'update'])->name('events.update');
     Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
+    Route::get('/events/{id}/edit', [EventController::class, 'edit'])->name('events.edit');
+    Route::put('/events/{id}', [EventController::class, 'update'])->name('events.update');
+
     // Route::get('/events/upcoming', [EventController::class, 'upcoming'])->name('events.upcoming');
     // Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
 
@@ -60,6 +65,11 @@ Route::middleware(['auth'])->group(function () {
 
     // Handle the update of settings
     Route::post('/settings', [SettingsController::class, 'update'])->name('settings.update');
+
+    
+
+    Route::resource('sponsors', SponsorController::class);
+
 });
 
 require __DIR__ . '/auth.php';

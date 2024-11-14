@@ -63,4 +63,45 @@ class EventController extends Controller
         // Return the view with the event data
         return view('events.show', compact('event'));
     }
+
+    public function edit($id)
+    {
+        // Find the event by its ID
+        $event = Event::findOrFail($id);
+
+        // Return the edit view with the event data
+        return view('events.edit', compact('event'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Find the event by ID
+        $event = Event::findOrFail($id);
+
+        // Validate the incoming request
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'date' => 'required|date',
+            'venue' => 'required|string|max:255',
+            'price' => 'nullable|numeric|min:0',
+            'capacity' => 'nullable|numeric|min:1',
+        ]);
+
+        // Update event details
+        $event->title = $validated['title'];
+        $event->description = $validated['description'];
+        $event->date = $validated['date'];
+        $event->venue = $validated['venue'];
+        $event->price = $validated['price'];
+        $event->capacity = $validated['capacity'];
+
+        // Save the updated event
+        $event->save();
+
+        // Redirect back to the events index with a success message
+        return redirect()->route('events.index')->with('success', 'Event updated successfully!');
+    }
+
+
 }    

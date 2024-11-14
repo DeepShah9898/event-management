@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Registration; // Assuming you have a Registration model for event attendees
+use App\Models\Sponsor;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -24,6 +25,8 @@ class DashboardController extends Controller
         // Calculate total revenue (if you have a price field in the events)
         $totalRevenue = Event::where('date', '>=', now())->sum('price');
 
-        return view('dashboard.index', compact('totalEvents', 'upcomingEvents', 'totalRegistrations', 'totalRevenue'));
+        $totalSponsors = Sponsor::count();
+
+        return view('dashboard.index', compact('totalEvents', 'upcomingEvents', 'totalRegistrations', 'totalRevenue', 'totalSponsors'));
     }
 }

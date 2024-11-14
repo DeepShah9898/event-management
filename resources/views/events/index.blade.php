@@ -42,13 +42,13 @@
                                 <td>{{ $event->venue }}</td>
                                 <td>
                                     {{-- View Button --}}
-                                    <a href="{{ route('events.show', $event->id) }}" class="btn btn-info btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="View Event Details">
-                                        <i class="fas fa-eye"></i> View
+                                    <a href="{{ route('events.show', $event->id) }}" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="View Event Details">
+                                        <i class="fas fa-eye"></i>
                                     </a>
 
                                     {{-- Edit Button --}}
                                     <a href="{{ route('events.edit', $event->id) }}" class="btn btn-warning btn-sm ms-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Event">
-                                        <i class="fas fa-edit"></i> Edit
+                                        <i class="fas fa-edit"></i>
                                     </a>
 
                                     {{-- Delete Button --}}
@@ -56,7 +56,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this event?')" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Event">
-                                            <i class="fas fa-trash-alt"></i> Delete
+                                            <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </form>
                                 </td>
@@ -90,34 +90,49 @@
             text-align: center;
         }
 
-        .btn-info {
-            background-color: #17a2b8;
-            border-color: #17a2b8;
+        /* Colorful Transparent Buttons */
+        .btn-primary {
+            background-color: transparent;
+            border-color: #007bff;
+            color: #007bff;
         }
 
-        .btn-info:hover {
-            background-color: #138496;
-            border-color: #117a8b;
+        .btn-primary:hover {
+            background-color: #007bff;
+            color: white;
         }
 
         .btn-warning {
-            background-color: #ffc107;
+            background-color: transparent;
             border-color: #ffc107;
+            color: #ffc107;
         }
 
         .btn-warning:hover {
-            background-color: #e0a800;
-            border-color: #d39e00;
+            background-color: #ffc107;
+            color: white;
         }
 
         .btn-danger {
-            background-color: #dc3545;
+            background-color: transparent;
             border-color: #dc3545;
+            color: #dc3545;
         }
 
         .btn-danger:hover {
-            background-color: #c82333;
-            border-color: #bd2130;
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-outline-success {
+            background-color: transparent;
+            border-color: #28a745;
+            color: #28a745;
+        }
+
+        .btn-outline-success:hover {
+            background-color: #28a745;
+            color: white;
         }
 
         .pagination {

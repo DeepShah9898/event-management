@@ -48,6 +48,19 @@
                 </div>
             </div>
 
+            <!-- Total Sponsors Card -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card shadow border-0 rounded-lg h-100">
+                    <div class="card-header bg-dark-gradient text-white d-flex align-items-center">
+                        <i class="fas fa-handshake icon-spacing"></i>
+                        <h6 class="mb-0">Total Sponsors</h6>
+                    </div>
+                    <div class="card-body text-center">
+                        <h3 class="fw-bold display-6">{{ $totalSponsors }}</h3>
+                    </div>
+                </div>
+            </div>
+
             <!-- Total Revenue Card -->
             <div class="col-lg-3 col-md-6 mb-4">
                 <div class="card shadow border-0 rounded-lg h-100">
@@ -60,28 +73,43 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
         <!-- Quick Actions Section -->
         <div class="row mt-4">
-            <div class="col-lg-3 col-md-6 mb-3">
+            {{-- <div class="col-lg-3 col-md-6 mb-3">
                 <a href="{{ route('events.create') }}" class="btn btn-primary btn-block py-3 shadow rounded-lg text-uppercase fw-bold">
                     <i class="fas fa-plus-circle me-2"></i> Create New Event
                 </a>
-            </div>
+            </div> --}}
             <div class="col-lg-3 col-md-6 mb-3">
                 <a href="{{ route('events.index') }}" class="btn btn-info btn-block py-3 shadow rounded-lg text-uppercase fw-bold">
                     <i class="fas fa-list me-2"></i> View All Events
                 </a>
             </div>
-            <div class="col-lg-3 col-md-6 mb-3">
+            {{-- <div class="col-lg-3 col-md-6 mb-3">
                 <a href="{{ route('registrations.create') }}" class="btn btn-success btn-block py-3 shadow rounded-lg text-uppercase fw-bold">
                     <i class="fas fa-address-book me-2"></i> Register Event
                 </a>
-            </div>
+            </div> --}}
             <div class="col-lg-3 col-md-6 mb-3">
                 <a href="{{ route('registrations.index') }}" class="btn btn-secondary btn-block py-3 shadow rounded-lg text-uppercase fw-bold">
                     <i class="fas fa-list me-2"></i> View Registrations
+                </a>
+            </div>
+
+            <!-- Add Sponsor Button -->
+            {{-- <div class="col-lg-3 col-md-6 mb-3">
+                <a href="{{ route('sponsors.create') }}" class="btn btn-dark btn-block py-3 shadow rounded-lg text-uppercase fw-bold">
+                    <i class="fas fa-handshake me-2"></i> Add Sponsor
+                </a>
+            </div> --}}
+
+            <!-- View Sponsor Button -->
+            <div class="col-lg-3 col-md-6 mb-3">
+                <a href="{{ route('sponsors.index') }}" class="btn btn-warning btn-block py-3 shadow rounded-lg text-uppercase fw-bold">
+                    <i class="fas fa-list me-2"></i> View Sponsors
                 </a>
             </div>
         </div>
@@ -95,6 +123,7 @@
     .bg-warning-gradient { background: linear-gradient(45deg, #ffc107, #e0a800); }
     .bg-info-gradient { background: linear-gradient(45deg, #17a2b8, #117a8b); }
     .bg-success-gradient { background: linear-gradient(45deg, #28a745, #1c7430); }
+    .bg-dark-gradient { background: linear-gradient(45deg, #343a40, #212529); }
 
     /* General Card Styling */
     .card-header {

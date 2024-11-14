@@ -43,13 +43,6 @@
                                 <p>Upcoming Events</p>
                             </a>
                         </li>
-                        <!-- View Events Submenu -->
-                        {{-- <li class="nav-item">
-                            <a href="{{ route('events.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-eye"></i>
-                                <p>View Events</p>
-                            </a>
-                        </li> --}}
                     </ul>
                 </li>
 
@@ -70,15 +63,36 @@
                                 <p>Add Registration</p>
                             </a>
                         </li>
-                        <!-- View Registrations Submenu -->
-                        {{-- <li class="nav-item">
-                            <a href="{{ route('registrations.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-eye"></i>
-                                <p>View Registrations</p>
-                            </a> --}}
-                        </li>
                     </ul>
                 </li>
+
+                <!-- Sponsors Link with Submenu -->
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-handshake"></i>
+                        <p>
+                            Sponsors
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <!-- Add Sponsor Submenu -->
+                        <li class="nav-item">
+                            <a href="{{ route('sponsors.create') }}" class="nav-link">
+                                <i class="nav-icon fas fa-plus-circle"></i>
+                                <p>Add Sponsor</p>
+                            </a>
+                        </li>
+                        {{-- <!-- View Sponsors Submenu -->
+                        <li class="nav-item">
+                            <a href="{{ route('sponsors.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-eye"></i>
+                                <p>View Sponsors</p>
+                            </a>
+                        </li> --}}
+                    </ul>
+                </li>
+
             </ul>
         </nav>
     </div>
