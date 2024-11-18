@@ -10,7 +10,7 @@
             <p><strong>Date:</strong> {{ \Carbon\Carbon::parse($event->date)->format('d M, Y') }}</p>
             <p><strong>Venue:</strong> {{ $event->venue }}</p>
             <p><strong>Description:</strong> {{ $event->description ?? 'No description provided.' }}</p>
-            <p><strong>Price:</strong> ${{ $event->price ?? 'Free' }}</p>
+            <p><strong>Price:</strong> ₹{{ $event->price ?? 'Free' }}</p>
             <p><strong>Capacity:</strong> {{ $event->capacity ?? 'Unlimited' }} people</p>
         </div>
         <div class="card-footer">
