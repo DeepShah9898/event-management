@@ -59,6 +59,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/register-events', [RegistrationController::class, 'create'])->name('register');
     Route::post('/register-store', [RegistrationController::class, 'store'])->name('register.store');
     Route::get('/register-events', [RegistrationController::class, 'create'])->name('registrations.create');
+    Route::get('/verify-email/{id}', [RegistrationController::class, 'verifyEmail'])->name('verify.email');
+    
+
 
     // Display the settings form
     // Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
