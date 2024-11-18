@@ -26,12 +26,13 @@ class RegistrationController extends Controller
 
     public function store(Request $request)
     {
-        // Validate input
+        // Validate input, including email
         $request->validate([
             'event_id' => 'required|exists:events,id',
             'ticket_type' => 'required|string',
             'quantity' => 'required|integer|min:1',
             'payment_status' => 'required|string|in:pending,paid',
+            'email' => 'required|email',
         ]);
 
         if (Auth::check()) {
@@ -44,11 +45,15 @@ class RegistrationController extends Controller
                 'payment_status' => $request->payment_status,
             ]);
 
-            // Send confirmation email
-            $email = Auth::user()->email;
-            Mail::to($email)->send(new RegistrationConfirmation($registration));
+            try {
+                // Send confirmation email
+                Mail::to($request->email)->send(new RegistrationConfirmation($registration));
+            } catch (\Exception $e) {
+                return redirect()->route('registrations.index')
+                    ->with('error', 'Registration successful, but failed to send confirmation email.');
+            }
 
-            return redirect()->route('registrations.create')
+            return redirect()->route('registrations.index')
                 ->with('success', 'Registration successful! A confirmation email has been sent.');
         }
 
