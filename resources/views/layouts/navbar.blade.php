@@ -67,9 +67,9 @@
                     <i class="fas fa-user mr-2"></i> Profile
                 </a>
                 <!-- Settings Link -->
-                <a href="{{ route('settings') }}" class="dropdown-item">
+                {{-- <a href="{{ route('settings') }}" class="dropdown-item">
                     <i class="fas fa-cog mr-2"></i> Settings
-                </a>
+                </a> --}}
                 <div class="dropdown-divider"></div>
                 <!-- Logout Link -->
                 <form method="POST" action="{{ route('logout') }}" class="dropdown-item text-danger">

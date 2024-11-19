@@ -11,6 +11,7 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
                 <!-- Dashboard Link -->
                 <li class="nav-item">
                     <a href="{{ route('dashboard') }}" class="nav-link">
@@ -29,14 +30,12 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <!-- Create Event Submenu -->
                         <li class="nav-item">
                             <a href="{{ route('events.create') }}" class="nav-link">
                                 <i class="nav-icon fas fa-plus-circle"></i>
                                 <p>Create Event</p>
                             </a>
                         </li>
-                        <!-- Upcoming Events Submenu -->
                         <li class="nav-item">
                             <a href="{{ route('upcoming.events') }}" class="nav-link">
                                 <i class="nav-icon fas fa-calendar-check"></i>
@@ -56,7 +55,6 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <!-- Add Registration Submenu -->
                         <li class="nav-item">
                             <a href="{{ route('registrations.create') }}" class="nav-link">
                                 <i class="nav-icon fas fa-plus-circle"></i>
@@ -76,20 +74,32 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <!-- Add Sponsor Submenu -->
                         <li class="nav-item">
                             <a href="{{ route('sponsors.create') }}" class="nav-link">
                                 <i class="nav-icon fas fa-plus-circle"></i>
                                 <p>Add Sponsor</p>
                             </a>
                         </li>
-                        {{-- <!-- View Sponsors Submenu -->
+                    </ul>
+                </li>
+
+                <!-- Settings Link with Submenu -->
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-cogs"></i>
+                        <p>
+                            Settings
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <!-- General Settings Submenu -->
                         <li class="nav-item">
-                            <a href="{{ route('sponsors.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-eye"></i>
-                                <p>View Sponsors</p>
+                            <a href="{{ route('settings') }}" class="nav-link">
+                                <i class="nav-icon fas fa-cogs"></i>
+                                <p>General Settings</p>
                             </a>
-                        </li> --}}
+                        </li>
                     </ul>
                 </li>
 

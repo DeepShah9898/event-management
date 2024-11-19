@@ -28,7 +28,6 @@
                 <table class="table table-hover table-bordered table-striped">
                     <thead class="thead-dark">
                         <tr>
-                            <th>#</th>
                             <th>User</th>
                             <th>Event</th>
                             <th>Ticket Type</th>
@@ -39,7 +38,6 @@
                     <tbody>
                         @foreach ($registrations as $registration)
                             <tr>
-                                <td>{{ $registration->id }}</td>
                                 <td>{{ $registration->user->name }}</td>
                                 <td>{{ $registration->event->title }}</td>
                                 <td>{{ $registration->ticket_type }}</td>
