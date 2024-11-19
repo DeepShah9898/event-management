@@ -39,7 +39,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/upcoming-events', [EventController::class, 'upcoming'])->name('upcoming.events');
 
-
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');  // Show profile details
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');  // Edit profile form
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');  // Update profile
@@ -62,14 +61,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/verify-email/{id}', [RegistrationController::class, 'verifyEmail'])->name('verify.email');
     
 
-
     // Display the settings form
     // Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
 
     // Handle the update of settings
     Route::post('/settings', [SettingsController::class, 'update'])->name('settings.update');
 
-    
+    Route::get('/event-ticket-price/{event_id}', [EventController::class, 'getTicketPrice'])->name('event.ticket.price');
+
+
 
     Route::resource('sponsors', SponsorController::class);
 

@@ -14,7 +14,7 @@ class EventController extends Controller
         $events = Event::all();
         return view('events.index', compact('events'));
     }
-    
+
 
     public function create()
     {
@@ -26,13 +26,13 @@ class EventController extends Controller
         if (!Auth::check()) {
             return redirect()->route('login')->with('error', 'You need to be logged in to create an event.');
         }
-    
+
         $request->validate([
             'title' => 'required|string|max:255',
             'date' => 'required|date',
             'venue' => 'required|string|max:255',
         ]);
-    
+
         Event::create([
             'title' => $request->title,
             'description' => $request->description,
@@ -42,15 +42,15 @@ class EventController extends Controller
             'price' => $request->price,
             'capacity' => $request->capacity,
         ]);
-    
+
         return redirect()->route('events.index')->with('success', 'Event created successfully');
     }
 
     public function upcoming()
     {
         $upcomingEvents = Event::where('date', '>', now())  // Use the 'date' field from your migration
-                            ->orderBy('date', 'asc')  // Sort events by the 'date' field
-                            ->paginate(10);  // Paginate with 10 events per page
+            ->orderBy('date', 'asc')  // Sort events by the 'date' field
+            ->paginate(10);  // Paginate with 10 events per page
 
         return view('events.upcoming', compact('upcomingEvents'));
     }
@@ -59,7 +59,7 @@ class EventController extends Controller
     {
         // Retrieve the event by its ID
         $event = Event::findOrFail($id);
-        
+
         // Return the view with the event data
         return view('events.show', compact('event'));
     }
@@ -110,5 +110,15 @@ class EventController extends Controller
         return redirect()->route('events.index')->with('success', 'Event deleted successfully');
     }
 
-
-}    
+    public function getTicketPrice($event_id)
+    {
+        $event = Event::find($event_id);
+    
+        if ($event) {
+            return response()->json(['price' => $event->price], 200);
+        }
+    
+        return response()->json(['error' => 'Event not found'], 404); // Log this error
+    }
+    
+}

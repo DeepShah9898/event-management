@@ -28,7 +28,7 @@
                 <!-- Event Selection -->
                 <div class="form-group mb-3">
                     <label for="event" class="font-weight-semibold">Select Event</label>
-                    <select name="event_id" id="event"
+                    <select name="event_id" id="event_id"
                         class="form-control form-control-sm shadow-sm @error('event_id') is-invalid @enderror" required>
                         <option value="" disabled selected>Select an event</option>
                         @foreach ($events as $event)
@@ -51,14 +51,14 @@
                 </div>
 
                 <!-- Quantity Input -->
-                <div class="form-group mb-3">
-                    <label for="quantity" class="font-weight-semibold">Quantity</label>
-                    <input type="number" name="quantity" id="quantity"
-                        class="form-control form-control-sm shadow-sm @error('quantity') is-invalid @enderror"
-                        min="1" required>
-                    @error('quantity')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                <div class="form-group">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" id="quantity" name="quantity" class="form-control" min="1" required>
+                </div>
+
+                <div class="form-group" style="display: none;" id="total-price-container">
+                    <label for="total_price">Total Price</label>
+                    <input type="text" id="total_price" name="total_price" class="form-control" readonly>
                 </div>
 
                 <!-- Email Input -->
@@ -91,4 +91,39 @@
             </form>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#event_id').on('change', function(){
+                var eventId =  $('#event_id').val();
+
+                $('#quantity').on('input', function() {
+                    const quantity = $(this).val();
+    
+                    if (quantity > 0) {
+                        $.ajax({
+                            url: `/event-ticket-price/${eventId}`,
+                            method: 'GET',
+                            success: function(response) {
+                                console.log('Response:', response); // Log the response
+                                const ticketPrice = response.price;
+                                const totalPrice = ticketPrice * quantity;
+    
+                                $('#total_price').val(totalPrice.toFixed(2));
+                                $('#total-price-container').show();
+                            },
+                            error: function(xhr, status, error) {
+                                console.error('Error:', error); // Log the error
+                                console.error('XHR:', xhr); // Log the full XHR object
+                                alert('Error fetching ticket price. Please try again.');
+                            },
+                        });
+                    } else {
+                        $('#total-price-container').hide();
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
