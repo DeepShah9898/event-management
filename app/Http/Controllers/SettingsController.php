@@ -43,20 +43,17 @@ class SettingsController extends Controller
     }
 
     // Update a specific setting
-    public function update(Request $request, Setting $setting)
+    public function updateAll(Request $request)
     {
-        $request->validate([
-            'key' => 'required|max:255|unique:settings,key,' . $setting->id,
-            'value' => 'required|max:255',
-        ]);
+        foreach ($request->input('settings') as $id => $value) {
+            $setting = Setting::findOrFail($id);
+            $setting->value = $value;
+            $setting->save();
+        }
 
-        $setting->update([
-            'key' => $request->key,
-            'value' => $request->value,
-        ]);
-
-        return redirect()->route('settings.index')->with('success', 'Setting updated successfully!');
+        return redirect()->route('settings')->with('success', 'Settings updated successfully.');
     }
+
 
     // Delete a specific setting
     public function destroy(Setting $setting)

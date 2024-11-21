@@ -68,8 +68,8 @@ Route::middleware(['auth'])->group(function () {
     // Handle the update of settings
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
     Route::post('/settings', [SettingsController::class, 'update'])->name('settings.update');
-    Route::put('/settings/{setting}', [SettingsController::class, 'update'])->name('settings.update');
-
+    //Route::put('/settings/{setting}', [SettingsController::class, 'update'])->name('settings.update');
+    Route::put('/settings/update-all', [SettingsController::class, 'updateAll'])->name('settings.updateAll');
 
     Route::resource('sponsors', SponsorController::class);
 
