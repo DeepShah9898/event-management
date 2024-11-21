@@ -46,9 +46,9 @@ class RegistrationController extends Controller
             ]);
 
             try {
-                // Send confirmation email
                 Mail::to($request->email)->send(new RegistrationConfirmation($registration));
             } catch (\Exception $e) {
+                // dd($e);
                 return redirect()->route('registrations.index')
                     ->with('error', 'Registration successful, but failed to send confirmation email.');
             }

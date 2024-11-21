@@ -72,13 +72,10 @@
                 </a> --}}
                 <div class="dropdown-divider"></div>
                 <!-- Logout Link -->
-                <form method="POST" action="{{ route('logout') }}" class="dropdown-item text-danger">
+                <form method="POST" action="{{ route('logout') }}" id="logoutForm">
                     @csrf
-                    <x-responsive-nav-link :href="route('logout')"
-                        onclick="event.preventDefault();
-                                this.closest('form').submit();">
-                         <i class="fas fa-sign-out-alt mr-2"></i> Logout
-                    </x-responsive-nav-link>
+                    <a href="javascript:void(0);" class="dropdown-item text-danger" onclick="document.getElementById('logoutForm').submit();">
+                        <i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
                 </form>
             </div>
         </li>

@@ -63,11 +63,13 @@ Route::middleware(['auth'])->group(function () {
     
     
     // Display the settings form
-    // Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
+    Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
     
     // Handle the update of settings
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
     Route::post('/settings', [SettingsController::class, 'update'])->name('settings.update');
+    Route::put('/settings/{setting}', [SettingsController::class, 'update'])->name('settings.update');
+
 
     Route::resource('sponsors', SponsorController::class);
 

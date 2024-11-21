@@ -1,7 +1,5 @@
 <?php
 
-// app/Http/Controllers/SettingsController.php
-
 namespace App\Http\Controllers;
 
 use App\Models\Setting;
@@ -9,26 +7,61 @@ use Illuminate\Http\Request;
 
 class SettingsController extends Controller
 {
-    // Show the settings page
+    // Display all settings
     public function index()
     {
-        // Retrieve all settings
         $settings = Setting::all();
-
         return view('settings.index', compact('settings'));
     }
 
-    // Update settings
-    public function update(Request $request)
+    // Show the create setting form
+    public function create()
     {
-        foreach ($request->except('_token') as $key => $value) {
-            // Find each setting by key and update its value
-            Setting::updateOrCreate(
-                ['key' => $key],
-                ['value' => $value]
-            );
-        }
+        return view('settings.create');
+    }
 
-        return redirect()->route('settings.index')->with('success', 'Settings updated successfully!');
+    // Store a new setting
+    public function store(Request $request)
+    {
+        $request->validate([
+            'key' => 'required|unique:settings,key|max:255',
+            'value' => 'required|max:255',
+        ]);
+
+        Setting::create([
+            'key' => $request->key,
+            'value' => $request->value,
+        ]);
+
+        return redirect()->route('settings.index')->with('success', 'Setting created successfully!');
+    }
+
+    // Show the edit form for a specific setting
+    public function edit(Setting $setting)
+    {
+        return view('settings.edit', compact('setting'));
+    }
+
+    // Update a specific setting
+    public function update(Request $request, Setting $setting)
+    {
+        $request->validate([
+            'key' => 'required|max:255|unique:settings,key,' . $setting->id,
+            'value' => 'required|max:255',
+        ]);
+
+        $setting->update([
+            'key' => $request->key,
+            'value' => $request->value,
+        ]);
+
+        return redirect()->route('settings.index')->with('success', 'Setting updated successfully!');
+    }
+
+    // Delete a specific setting
+    public function destroy(Setting $setting)
+    {
+        $setting->delete();
+        return redirect()->route('settings.index')->with('success', 'Setting deleted successfully!');
     }
 }

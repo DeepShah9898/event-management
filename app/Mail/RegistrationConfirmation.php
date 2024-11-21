@@ -13,18 +13,18 @@ class RegistrationConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
     
-    public $user;
+    public $registration;
 
-    public function __construct($user)
+    public function __construct($registration)
     {
-        $this->user = $user;
+        $this->registration = $registration;
     }
 
     public function build()
     {
         return $this->subject('Registration Confirmation')
                     ->view('emails.registration_confirmation')
-                    ->with(['user' => $this->user]);
+                    ->with(['user' => $this->registration]);
     }
 
     /**

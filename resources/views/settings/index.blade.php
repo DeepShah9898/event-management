@@ -1,5 +1,3 @@
-<!-- resources/views/settings/index.blade.php -->
-
 @extends('layouts.app')
 
 @section('content')
@@ -18,81 +16,52 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
-    
+
     {{-- Settings Form --}}
-    <div class="card shadow-sm rounded-lg">
-        <div class="card-body">
-            <form action="{{ route('settings.update') }}" method="POST">
-                @csrf
+    @foreach ($settings as $setting)
+        <div class="card shadow-sm rounded-lg mb-3">
+            <div class="card-body">
+                <form action="{{ route('settings.update', $setting->id) }}" method="POST">
+                    @csrf
+                    @method('PUT') <!-- Spoof PUT method -->
 
-                <div class="form-group mb-3">
-                    <label for="app_name" class="form-label">App Name</label>
-                    <input type="text" class="form-control" id="app_name" name="app_name" value="{{ $settings->where('key', 'app_name')->first()->value ?? '' }}">
-                </div>
+                    <div class="form-group mb-3">
+                        <label for="value-{{ $setting->id }}" class="form-label">{{ ucfirst(str_replace('_', ' ', $setting->key)) }}</label>
+                        <input type="text" class="form-control" id="value-{{ $setting->id }}" name="value" value="{{ $setting->value }}">
+                    </div>
 
-                <div class="form-group mb-3">
-                    <label for="app_email" class="form-label">App Email</label>
-                    <input type="email" class="form-control" id="app_email" name="app_email" value="{{ $settings->where('key', 'app_email')->first()->value ?? '' }}">
-                </div>
-
-                <div class="form-group mb-3">
-                    <label for="contact_number" class="form-label">Contact Number</label>
-                    <input type="text" class="form-control" id="contact_number" name="contact_number" value="{{ $settings->where('key', 'contact_number')->first()->value ?? '' }}">
-                </div>
-
-                <div class="form-group mb-3">
-                    <label for="address" class="form-label">Address</label>
-                    <textarea class="form-control" id="address" name="address">{{ $settings->where('key', 'address')->first()->value ?? '' }}</textarea>
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-sm w-100 shadow-sm mt-3"">Update Settings</button>
-          
-            </form>
+                    <button type="submit" class="btn btn-primary btn-sm shadow-sm">Update</button>
+                </form>
+            </div>
         </div>
-    </div>
+    @endforeach
 </div>
 @endsection
 
 @section('styles')
-    <style>
-        .container {
-            max-width: 800px;
-        }
-
-        .card {
-            margin-top: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            font-weight: bold;
-        }
-
-        .alert-success {
-            font-size: 16px;
-        }
-
-        .btn-outline-primary {
-            border-color: #007bff;
-            color: #007bff;
-        }
-
-        .btn-outline-primary:hover {
-            background-color: #007bff;
-            color: white;
-        }
-    </style>
-@endsection
-
-@section('scripts')
-    <script>
-        // Enable Bootstrap tooltips if needed
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl);
-        });
-    </script>
+<style>
+    .container {
+        max-width: 800px;
+    }
+    .card {
+        margin-top: 20px;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-label {
+        font-weight: bold;
+    }
+    .alert-success {
+        font-size: 16px;
+    }
+    .btn-outline-secondary {
+        border-color: #6c757d;
+        color: #6c757d;
+    }
+    .btn-outline-secondary:hover {
+        background-color: #6c757d;
+        color: white;
+    }
+</style>
 @endsection
