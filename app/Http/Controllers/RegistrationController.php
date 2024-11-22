@@ -26,6 +26,7 @@ class RegistrationController extends Controller
 
     public function store(Request $request)
     {
+        $get_quantity = Event::find($request->event_id);
         // Validate input, including email
         $request->validate([
             'event_id' => 'required|exists:events,id',
@@ -37,6 +38,7 @@ class RegistrationController extends Controller
 
         if (Auth::check()) {
             // Create a new registration
+
             $registration = Registration::create([
                 'user_id' => Auth::id(),
                 'event_id' => $request->event_id,
@@ -44,6 +46,11 @@ class RegistrationController extends Controller
                 'quantity' => $request->quantity,
                 'payment_status' => $request->payment_status,
             ]);
+            $plan = $plan = ($get_quantity->capacity) - ($request->quantity);
+            Event::where('id', $request->event_id)
+                ->update([
+                    'capacity' => $plan
+                ]);
 
             try {
                 Mail::to($request->email)->send(new RegistrationConfirmation($registration));

@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a class="brand-link">
+    <a href="#" class="brand-link">
         <i class="fas fa-calendar-alt brand-icon"></i> <!-- Symbol for Event Management -->
         <span class="brand-text font-weight-light text-white">Event Manager</span>
     </a>
@@ -112,36 +112,39 @@
 <style>
     /* General Sidebar styling */
     .main-sidebar {
-        background-color: #1e1f29;
-        color: #dcdde1;
-        font-family: Arial, sans-serif;
+        background-color: #121212; /* Dark background for a modern look */
+        color: #dcdde1; /* Soft text color */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
     }
     .brand-link {
-        background-color: #27293d;
-        border-bottom: 1px solid #343750;
-        color: #ffffff; /* Ensure text is white */
+        background-color: #1e1e2d; /* Darker background for the brand section */
+        border-bottom: 2px solid #333;
+        color: #ffffff;
         font-weight: bold;
         display: flex;
         align-items: center;
-        justify-content: center; /* Center-aligns the brand text */
+        justify-content: center;
+        padding: 15px;
+        transition: background-color 0.3s;
+    }
+    .brand-link:hover {
+        background-color: #2b2b3d;
     }
     .brand-icon {
         margin-right: 10px;
-        font-size: 24px;
+        font-size: 30px;
     }
 
     /* Sidebar Link Styling */
     .sidebar-dark-primary .nav-link {
-        color: #b8c7d3;
+        color: #b8c7d3; /* Light grey text for links */
+        font-size: 16px;
+        padding: 12px 18px;
         transition: background-color 0.3s, color 0.3s;
     }
     .sidebar-dark-primary .nav-link:hover {
-        background-color: #495057;
-        color: #ffffff;
-    }
-    .nav-icon {
-        font-size: 18px;
-        margin-right: 8px;
+        background-color: #495057; /* Darker background on hover */
+        color: #ffffff; /* White text on hover */
     }
 
     /* Active Link */
@@ -150,30 +153,23 @@
         color: #ffffff;
     }
 
-    /* Improved padding and layout */
-    .sidebar .nav-pills .nav-item > .nav-link {
-        padding: 12px 20px;
+    /* Treeview submenu */
+    .nav-treeview {
+        padding-left: 20px;
+        background-color: #2b2b3d;
+        border-left: 3px solid #00ff15;
+    }
+    .nav-treeview .nav-link {
         font-size: 15px;
+        padding-left: 30px;
     }
 
     /* Hover Animation */
     .sidebar .nav-link i {
-        transition: transform 0.2s;
+        transition: transform 0.3s ease;
     }
     .sidebar .nav-link:hover i {
-        transform: scale(1.1);
-    }
-
-    /* Transition Effects */
-    .sidebar,
-    .nav-link,
-    .brand-link {
-        transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    /* Treeview submenu */
-    .nav-treeview {
-        padding-left: 20px;
+        transform: scale(1.1); /* Slight zoom on icon hover */
     }
 
     /* Brand Logo in collapsed sidebar */
@@ -183,5 +179,21 @@
     .main-sidebar.sidebar-collapse .brand-icon {
         margin: 0 auto; /* Center the icon */
         font-size: 24px;
+    }
+
+    /* Sidebar collapse button */
+    .main-sidebar.sidebar-collapse .nav-link {
+        padding-left: 20px;
+    }
+
+    /* General padding and layout */
+    .nav-link {
+        font-weight: 600;
+    }
+    .nav-item > .nav-link {
+        border-radius: 8px;
+    }
+    .nav-item > .nav-link:hover {
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
     }
 </style>
